@@ -17,7 +17,7 @@ struct Sizes: FeedCellSizes {
 }
 
 protocol FeedCellLayoutCalculatorProtocol {
-    func sizes(postText: String?, photoAttachment: FeedCellPhotoAttachmentViewModel?, isFullSizedPost: Bool) -> FeedCellSizes
+    func sizes(postText: String?, photoAttachments: [FeedCellPhotoAttachmentViewModel], isFullSizedPost: Bool) -> FeedCellSizes
 }
 
 final class FeedCellLayoutCalculator: FeedCellLayoutCalculatorProtocol {
@@ -28,7 +28,7 @@ final class FeedCellLayoutCalculator: FeedCellLayoutCalculatorProtocol {
         self.screenWidth = screenWidth
     }
     
-    func sizes(postText: String?, photoAttachment: FeedCellPhotoAttachmentViewModel?, isFullSizedPost: Bool) -> FeedCellSizes {
+    func sizes(postText: String?, photoAttachments: [FeedCellPhotoAttachmentViewModel], isFullSizedPost: Bool) -> FeedCellSizes {
         
         var showMoreTextButton = false
         
@@ -67,11 +67,23 @@ final class FeedCellLayoutCalculator: FeedCellLayoutCalculatorProtocol {
         
         var attachmentFrame: CGRect = CGRect(origin: CGPoint(x: 0, y: attachmentTop), size: CGSize.zero)
         
-        if let attachment = photoAttachment {
+        if let attachment = photoAttachments.first {
             let photoHeight: Float = Float(attachment.height)
             let photoWidth: Float = Float(attachment.width)
             let ratio = CGFloat(photoHeight / photoWidth)
-            attachmentFrame.size = CGSize(width: cardViewWidth, height: cardViewWidth * ratio)
+            if photoAttachments.count == 1 {
+                attachmentFrame.size = CGSize(width: cardViewWidth, height: cardViewWidth * ratio)
+            
+            } else if photoAttachments.count > 1 {
+                var photoSizes = [CGSize]()
+                for photo in photoAttachments {
+                    let photoSize = CGSize(width: CGFloat(photo.width), height: CGFloat(photo.height))
+                    photoSizes.append(photoSize)
+                }
+                
+                let rowHeight = NewsFeedPhotoCollectionLayout.countRowHeight(superViewWidth: cardViewWidth, photoSizes: photoSizes)
+                attachmentFrame.size = CGSize(width: cardViewWidth, height: rowHeight ?? CGFloat.zero)
+            }
         }
         
         // MARK: - bottomViewFrame

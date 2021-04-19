@@ -25,7 +25,7 @@ final class NetworkService: Networking {
         var allParams = params
         allParams["access_token"] = token
         allParams["v"] = API.version
-        let url = self.url(from: API.newsFeed, params: allParams)
+        let url = self.url(from: path, params: allParams)
         let request = URLRequest(url: url)
         let task = createDataTask(from: request, completion: completion)
         task.resume()
@@ -45,7 +45,7 @@ final class NetworkService: Networking {
         
         components.scheme = API.scheme
         components.host = API.host
-        components.path = API.newsFeed
+        components.path = path
         components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
         
         return components.url!

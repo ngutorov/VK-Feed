@@ -37,6 +37,9 @@
 		FDD8E5002626D6980048AE30 /* GalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8E4FF2626D6980048AE30 /* GalleryCollectionView.swift */; };
 		FDD8E5062626DF8A0048AE30 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8E5052626DF8A0048AE30 /* GalleryCollectionViewCell.swift */; };
 		FDD8E509262985400048AE30 /* NewsFeedPhotoCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8E508262985400048AE30 /* NewsFeedPhotoCollectionLayout.swift */; };
+		FDD8E510262C394D0048AE30 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8E50F262C394D0048AE30 /* TitleView.swift */; };
+		FDD8E513262C3B5A0048AE30 /* InsertableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8E512262C3B5A0048AE30 /* InsertableTextField.swift */; };
+		FDD8E51A262CF4F50048AE30 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8E519262CF4F50048AE30 /* UserResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +77,9 @@
 		FDD8E4FF2626D6980048AE30 /* GalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionView.swift; sourceTree = "<group>"; };
 		FDD8E5052626DF8A0048AE30 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		FDD8E508262985400048AE30 /* NewsFeedPhotoCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedPhotoCollectionLayout.swift; sourceTree = "<group>"; };
+		FDD8E50F262C394D0048AE30 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		FDD8E512262C3B5A0048AE30 /* InsertableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertableTextField.swift; sourceTree = "<group>"; };
+		FDD8E519262CF4F50048AE30 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				FDD8E4B7261DA8990048AE30 /* NewsFeedResponse.swift */,
+				FDD8E519262CF4F50048AE30 /* UserResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -172,6 +179,7 @@
 		FDD8E4C0261E31630048AE30 /* NewsFeed */ = {
 			isa = PBXGroup;
 			children = (
+				FDD8E50E262C392E0048AE30 /* TitleView */,
 				FDD8E4FE2626D67B0048AE30 /* GalleryView */,
 				FDD8E4D6261E51C10048AE30 /* Cell */,
 				FDD8E4D1261E3CC60048AE30 /* NewsFeedViewController.storyboard */,
@@ -222,6 +230,15 @@
 				FDD8E508262985400048AE30 /* NewsFeedPhotoCollectionLayout.swift */,
 			);
 			path = GalleryView;
+			sourceTree = "<group>";
+		};
+		FDD8E50E262C392E0048AE30 /* TitleView */ = {
+			isa = PBXGroup;
+			children = (
+				FDD8E50F262C394D0048AE30 /* TitleView.swift */,
+				FDD8E512262C3B5A0048AE30 /* InsertableTextField.swift */,
+			);
+			path = TitleView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,6 +362,7 @@
 				FDD8E4C8261E32000048AE30 /* NewsFeedPresenter.swift in Sources */,
 				FDD8E4ED26213A5A0048AE30 /* NewsFeedCodeCell.swift in Sources */,
 				FD0031E424FA384900F7179F /* AppDelegate.swift in Sources */,
+				FDD8E513262C3B5A0048AE30 /* InsertableTextField.swift in Sources */,
 				FDD8E5062626DF8A0048AE30 /* GalleryCollectionViewCell.swift in Sources */,
 				FDD8E4CD261E32000048AE30 /* NewsFeedInteractor.swift in Sources */,
 				FD0031E624FA384900F7179F /* SceneDelegate.swift in Sources */,
@@ -355,7 +373,9 @@
 				FDD8E509262985400048AE30 /* NewsFeedPhotoCollectionLayout.swift in Sources */,
 				FDD8E4E226202C630048AE30 /* WebImageView.swift in Sources */,
 				FDD8E4F726216D630048AE30 /* Constants.swift in Sources */,
+				FDD8E510262C394D0048AE30 /* TitleView.swift in Sources */,
 				FDD8E4CA261E32000048AE30 /* NewsFeedRouter.swift in Sources */,
+				FDD8E51A262CF4F50048AE30 /* UserResponse.swift in Sources */,
 				FDD8E4F42621655C0048AE30 /* Constraints.swift in Sources */,
 				FD3DE104251C86F700647C8E /* AuthService.swift in Sources */,
 				FD998E632526E19300A89880 /* API.swift in Sources */,

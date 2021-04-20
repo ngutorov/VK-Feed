@@ -18,6 +18,12 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
     
     private var titleView = TitleView()
     
+    private var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return refreshControl
+    }()
+    
     var interactor: NewsFeedBusinessLogic?
     var router: (NSObjectProtocol & NewsFeedRoutingLogic)?
     
@@ -47,6 +53,16 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
         super.viewDidLoad()
         setup()
         setupTopBars()
+        setupTableView()
+        
+        view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        interactor?.makeRequest(request: .getNewsFeed)
+        interactor?.makeRequest(request: .getUser)
+    }
+    
+    private func setupTableView() {
+        let topInset: CGFloat = 8
+        tableView.contentInset.top = topInset
         
         tableView.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: NewsFeedCell.reuseID)
         tableView.register(NewsFeedCodeCell.self, forCellReuseIdentifier: NewsFeedCodeCell.reuseId)
@@ -54,15 +70,18 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.allowsSelection = false
-        view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        interactor?.makeRequest(request: .getNewsFeed)
-        interactor?.makeRequest(request: .getUser)
+        
+        tableView.addSubview(refreshControl)
     }
     
     private func setupTopBars() {
         self.navigationController?.hidesBarsOnSwipe = true
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationItem.titleView = titleView
+    }
+    
+    @objc private func refresh() {
+        interactor?.makeRequest(request: NewsFeed.Model.Request.RequestType.getNewsFeed)
     }
     
     func displayData(viewModel: NewsFeed.Model.ViewModel.ViewModelData) {
@@ -72,7 +91,8 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
         case .displayNewsFeed(feedViewModel: let feedViewModel):
             self.newsFeedViewModel = feedViewModel
             tableView.reloadData()
-        
+            refreshControl.endRefreshing()
+            
         case .displayUser(userViewModel: let userViewModel):
             titleView.set(userViewModel: userViewModel)
         }

@@ -53,17 +53,30 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
         
         let sizes = cellLayoutCalculator.sizes(postText: feedItem.text, photoAttachments: photoAttachments, isFullSizedPost: isFullSized)
         
+        let postText = feedItem.text?.replacingOccurrences(of: "<br>", with: "\n")
+        
         return NewsFeedViewModel.Cell.init(postId: feedItem.postId,
                                            iconUrlString: profile?.photo ?? "",
                                            name: profile?.name ?? "",
-                                           text: feedItem.text,
+                                           text: postText,
                                            date: dateTitle,
-                                           likes: String(feedItem.likes?.count ?? 0),
-                                           comments: String(feedItem.comments?.count ?? 0),
-                                           reposts: String(feedItem.reposts?.count ?? 0),
-                                           views: String(feedItem.views?.count ?? 0),
+                                           likes: formatCounter(feedItem.likes?.count),
+                                           comments: formatCounter(feedItem.comments?.count),
+                                           reposts: formatCounter(feedItem.reposts?.count),
+                                           views: formatCounter(feedItem.views?.count),
                                            photoAttachments: photoAttachments,
                                            sizes: sizes)
+    }
+    
+    private func formatCounter(_ counter: Int?) -> String? {
+        guard let counter = counter, counter > 0 else { return nil }
+        var counterString = String(counter)
+        if 4...6 ~= counterString.count {
+            counterString = String(counterString.dropLast(3)) + "K"
+        } else if counterString.count > 6 {
+            counterString = String(counterString.dropLast(6)) + "M"
+        }
+        return counterString
     }
     
     private func profile(for sourceId: Int, profiles: [Profile], groups: [Group]) -> ProfileRepresentable? {

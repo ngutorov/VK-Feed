@@ -40,6 +40,8 @@
 		FDD8E510262C394D0048AE30 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8E50F262C394D0048AE30 /* TitleView.swift */; };
 		FDD8E513262C3B5A0048AE30 /* InsertableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8E512262C3B5A0048AE30 /* InsertableTextField.swift */; };
 		FDD8E51A262CF4F50048AE30 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8E519262CF4F50048AE30 /* UserResponse.swift */; };
+		FDD8E52D262F11540048AE30 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8E52C262F11540048AE30 /* FooterView.swift */; };
+		FDD8E530262FD9240048AE30 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FDD8E52F262FD9240048AE30 /* Localizable.stringsdict */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +82,8 @@
 		FDD8E50F262C394D0048AE30 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		FDD8E512262C3B5A0048AE30 /* InsertableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertableTextField.swift; sourceTree = "<group>"; };
 		FDD8E519262CF4F50048AE30 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		FDD8E52C262F11540048AE30 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		FDD8E52F262FD9240048AE30 /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 				FD0031EC24FA385000F7179F /* Assets.xcassets */,
 				FD0031EE24FA385000F7179F /* LaunchScreen.storyboard */,
 				FD0031F124FA385000F7179F /* Info.plist */,
+				FDD8E52F262FD9240048AE30 /* Localizable.stringsdict */,
 			);
 			path = "VK Feed";
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 		FDD8E4C0261E31630048AE30 /* NewsFeed */ = {
 			isa = PBXGroup;
 			children = (
+				FDD8E52B262F11390048AE30 /* FooterView */,
 				FDD8E50E262C392E0048AE30 /* TitleView */,
 				FDD8E4FE2626D67B0048AE30 /* GalleryView */,
 				FDD8E4D6261E51C10048AE30 /* Cell */,
@@ -239,6 +245,14 @@
 				FDD8E512262C3B5A0048AE30 /* InsertableTextField.swift */,
 			);
 			path = TitleView;
+			sourceTree = "<group>";
+		};
+		FDD8E52B262F11390048AE30 /* FooterView */ = {
+			isa = PBXGroup;
+			children = (
+				FDD8E52C262F11540048AE30 /* FooterView.swift */,
+			);
+			path = FooterView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,6 +320,7 @@
 				FDD8E4DC261E72310048AE30 /* NewsFeedCell.xib in Resources */,
 				FD3DE113251D15B000647C8E /* AuthViewController.storyboard in Resources */,
 				FD0031ED24FA385000F7179F /* Assets.xcassets in Resources */,
+				FDD8E530262FD9240048AE30 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD0031E824FA384900F7179F /* AuthViewController.swift in Sources */,
+				FDD8E52D262F11540048AE30 /* FooterView.swift in Sources */,
 				FDD8E4C8261E32000048AE30 /* NewsFeedPresenter.swift in Sources */,
 				FDD8E4ED26213A5A0048AE30 /* NewsFeedCodeCell.swift in Sources */,
 				FD0031E424FA384900F7179F /* AppDelegate.swift in Sources */,

@@ -17,6 +17,7 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
     @IBOutlet weak var tableView: UITableView!
     
     private var titleView = TitleView()
+    private lazy var footerView = FooterView()
     
     private var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -27,7 +28,7 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
     var interactor: NewsFeedBusinessLogic?
     var router: (NSObjectProtocol & NewsFeedRoutingLogic)?
     
-    private var newsFeedViewModel = NewsFeedViewModel.init(cells: [])
+    private var newsFeedViewModel = NewsFeedViewModel.init(cells: [], footerTitle: nil)
     
     // MARK: Setup
     
@@ -72,6 +73,7 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
         tableView.allowsSelection = false
         
         tableView.addSubview(refreshControl)
+        tableView.tableFooterView = footerView
     }
     
     private func setupTopBars() {
@@ -90,11 +92,21 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
         
         case .displayNewsFeed(feedViewModel: let feedViewModel):
             self.newsFeedViewModel = feedViewModel
+            footerView.setTitle(title: feedViewModel.footerTitle)
             tableView.reloadData()
             refreshControl.endRefreshing()
             
         case .displayUser(userViewModel: let userViewModel):
             titleView.set(userViewModel: userViewModel)
+        
+        case .displayFooterLoader:
+            footerView.showLoader()
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height / 1.1 {
+            interactor?.makeRequest(request: NewsFeed.Model.Request.RequestType.getNextBatch)
         }
     }
     
